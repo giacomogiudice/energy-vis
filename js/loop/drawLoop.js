@@ -29,7 +29,29 @@ define(["d3","data"],
     		.y0(function(d,i) {return -r * Math.cos(i * 2 * π/n)})
     		.interpolate("cardinal-closed");
 
-    	
+    	var sw_size = 25;
+    	var margin = 5;
+    	var legend = d3.select("svg").append("g")
+    		.attr("transform","translate(" + 0 + "," + h/2 + ")");
+
+    	for(i=0; i<3; i++) {
+    		legend.append("rect")
+	    		.attr("x",0)
+	    		.attr("y",(i-1) * (sw_size+margin))
+	    		.attr("width",sw_size)
+	    		.attr("height",sw_size)
+	    		.attr("rx", sw_size/3)
+	    		.attr("ry", sw_size/3)
+	    		.attr("class","translucent")
+	    		.attr("fill",ucolors[i]);
+	    	
+	    	legend.append("text")
+	    		.attr("class","translucent")
+	    		.attr("x",sw_size + margin)
+	    		.attr("y",i * (sw_size+margin) - sw_size/2)
+	    		.text(data.labels[i]);
+    	}
+
     	function getCurrentData() { return (am)? data.means[house][j].slice(0,n) : data.means[house][j].slice(n,2*n) }
     	
     	function getCurrentTime(t) {
