@@ -43,8 +43,8 @@ define(["d3","data"],
     			util[j] = svg.append("path")
     			.attr("d",utilArea(getCurrentData()))
             	.attr("fill", ucolors[j])
-            	.attr("class","translucent")
-            	.append("svg:title").text(data.labels[j]);
+            	.attr("class","translucent");
+
     	}
 
     	var arc = d3.svg.arc()
